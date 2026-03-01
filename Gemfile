@@ -207,24 +207,8 @@ gem 'ed25519'
 gem 'bcrypt_pbkdf'
 gem 'gpgme'
 
-# AWS SDK is needed for deployment and within the application
-gem 'aws-sdk-rails', '~> 3'
-gem 'aws-sdk-autoscaling', '~> 1'
-gem 'aws-sdk-cloudwatchevents', '~> 1'
-gem 'aws-sdk-cloudwatchlogs', '~> 1'
-gem 'aws-sdk-cloudwatch', '~> 1'
-gem 'aws-sdk-ecs', '~> 1'
-gem 'aws-sdk-ec2', '~> 1'
-gem 'aws-sdk-ecr', '~> 1'
-gem 'aws-sdk-elasticloadbalancingv2', '~> 1'
-gem 'aws-sdk-glacier', '~> 1'
-gem 'aws-sdk-rds', '~> 1'
+# AWS SDK - S3 used for file imports/uploads
 gem 'aws-sdk-s3', '~> 1'
-gem 'aws-sdk-secretsmanager', '~> 1'
-gem 'aws-sdk-ses', '~> 1'
-gem 'aws-sdk-iam', '~> 1'
-gem 'aws-sdk-sns', require: false
-gem 'aws-sdk-ssm', '~> 1'
 gem 'json'
 gem 'json_schemer', '~> 2.4.0', require: false # external API validation
 gem 'oj'
@@ -283,7 +267,6 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'rails-erd', require: false
   gem 'web-console'
-  gem 'aws-sdk-dynamodb', require: false
   # gem 'quiet_assets'
 
   gem 'list_matcher', require: false # for the forms:desmush rake task

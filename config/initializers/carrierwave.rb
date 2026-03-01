@@ -13,9 +13,12 @@ CarrierWave.configure do |config|
       credentials: Aws::Credentials.new(tmp_access_key, tmp_secret_key),
       access_key_id: tmp_access_key,
       secret_access_key: tmp_secret_key,
-      region: ENV.fetch('S3_TMP_REGION'),
+      region: ENV.fetch('S3_TMP_REGION', 'us-east-1'),
       stub_responses: Rails.env.test?, # Optional, avoid hitting S3 actual during tests
-    }
+    }.tap do |creds|
+      creds[:endpoint] = ENV['S3_ENDPOINT'] if ENV['S3_ENDPOINT'].present?
+      creds[:force_path_style] = false
+    end
   end
 end
 

@@ -69,13 +69,14 @@ module WarehouseReports::S3Toolset
   end
 
   private def s3_client
-    @s3_client ||= if ENV['S3_PUBLIC_ACCESS_KEY_ID'].present? && ENV['S3_PUBLIC_ACCESS_KEY_SECRET'].present?
-      Aws::S3::Client.new(
-        access_key_id: ENV.fetch('S3_PUBLIC_ACCESS_KEY_ID'),
-        secret_access_key: ENV.fetch('S3_PUBLIC_ACCESS_KEY_SECRET'),
-      )
-    else
-      Aws::S3::Client.new
+    @s3_client ||= begin
+      opts = { region: ENV.fetch('S3_PUBLIC_REGION', 'us-east-1') }
+      if ENV['S3_PUBLIC_ACCESS_KEY_ID'].present? && ENV['S3_PUBLIC_ACCESS_KEY_SECRET'].present?
+        opts[:access_key_id] = ENV.fetch('S3_PUBLIC_ACCESS_KEY_ID')
+        opts[:secret_access_key] = ENV.fetch('S3_PUBLIC_ACCESS_KEY_SECRET')
+      end
+      opts[:endpoint] = ENV['S3_ENDPOINT'] if ENV['S3_ENDPOINT'].present?
+      Aws::S3::Client.new(**opts)
     end
   end
 

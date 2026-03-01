@@ -24,7 +24,11 @@
 # allow whitespace to make the configuration easier to read
 # rubocop:disable Layout/EmptyLinesAroundArguments
 Rails.application.config.content_security_policy do |policy|
-  public_s3_url = ENV['S3_PUBLIC_URL'].present? ? "https://#{ENV['S3_PUBLIC_URL']}.s3.amazonaws.com/" : nil
+  # S3_PUBLIC_URL can be a full URL (for DO Spaces) or a bucket name (falls back to AWS S3 URL)
+  public_s3_url = if ENV['S3_PUBLIC_URL'].present?
+    url = ENV['S3_PUBLIC_URL']
+    url.start_with?('https://') ? url : "https://#{url}.s3.amazonaws.com/"
+  end
 
   policy.default_src(:self)
   policy.object_src(:none) # Prevents potentially dangerous browser plugins

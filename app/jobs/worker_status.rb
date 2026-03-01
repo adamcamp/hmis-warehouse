@@ -83,6 +83,7 @@ class WorkerStatus
 
   def latest_version
     return @latest_version unless @latest_version.nil?
+    return -1 if ENV['ECS_CONTAINER_METADATA_URI_V4'].blank?
 
     unversioned_task_definition = task_metadata['Family']
 
@@ -92,7 +93,7 @@ class WorkerStatus
     result = client.describe_task_definition(task_definition: unversioned_task_definition)
 
     @latest_version = result.task_definition[:task_definition_arn].split(':').last.to_i
-  rescue Aws::ECS::Errors::ClientException, Aws::Errors::InvalidProcessCredentialsPayload => e
+  rescue StandardError => e
     Rails.logger.error e.message
     Rails.logger.error 'Unable to determine if we should exit this workoff worker'
     -1
@@ -125,7 +126,10 @@ class WorkerStatus
   end
 
   def client
-    @client ||= Aws::ECS::Client.new
+    @client ||= begin
+      require 'aws-sdk-ecs'
+      Aws::ECS::Client.new
+    end
   end
 
   def notify_on_restart(msg)
