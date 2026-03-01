@@ -10,7 +10,7 @@
 
 ## Introduction
 
-The HMIS Warehouse project was initiated by the City of Boston's Department of Neighborhood Development to gather data from across various HMIS installations, produce aggregated reports, and supply de-duplicated client information to the [Boston CAS](https://github.com/greenriver/boston-cas) system for Coordinated Access to housing.
+The HMIS Warehouse project was initiated by the City of Boston's Department of Neighborhood Development to gather data from across various HMIS installations, produce aggregated reports, and supply de-duplicated client information to the [Frederick CAS](https://github.com/adamcamp/frederick-cas) system for Coordinated Access to housing.
 
 At its core the Warehouse ingests standard HUD HMIS CSV files, de duplicates clients across HMIS data sources, and aggregates data associated with HMIS clients from additional sources.
 
@@ -48,7 +48,7 @@ The application is written primarily in [Ruby on Rails](http://rubyonrails.org),
 Open Path is a suite of open-source HMIS related applications and includes:
 - Open Path Warehouse, found in this repository
 - [Open Path HMIS](http://github.com/greenriver/hmis-frontend), a service provider front-end HMIS tightly integrated with the warehouse
-- [Open Path CAS](https://github.com/greenriver/boston-cas), a coordinated entry workflow tool for streamlining access to limited housing and other resources.
+- [Frederick CAS](https://github.com/adamcamp/frederick-cas), a coordinated entry workflow tool for streamlining access to limited housing and other resources.
 
 ## Third-Party Integrations
 The Open Path Warehouse integrates with a variety of third-party applications and APIs, the following is a high-level list of the more tightly integrated or impactful integrations.
