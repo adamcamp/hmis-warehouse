@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     freetds-dev \
     libproj-dev \
     shared-mime-info \
+    libffi \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g yarn \
