@@ -26,7 +26,10 @@ RUN yarn install --production
 
 COPY . .
 
-RUN SECRET_KEY_BASE=placeholder RAILS_ENV=production bundle exec rake assets:precompile
+RUN SECRET_KEY_BASE=placeholder DATABASE_URL=postgresql://localhost/dummy \
+    CLIENT=build HOSTNAME=localhost FQDN=localhost TIMEZONE=UTC \
+    DEFAULT_FROM=build@localhost SMTP_SERVER=localhost SMTP_DOMAIN=localhost SMTP_PORT=587 \
+    RAILS_ENV=production bundle exec rake assets:precompile
 
 # Stage 2: Runtime
 FROM ruby:3.3-slim
