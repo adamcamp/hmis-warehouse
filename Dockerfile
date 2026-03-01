@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --without development test --jobs 4 --retry 3
+RUN bundle install --jobs 4 --retry 3
 
 COPY package.json yarn.lock ./
 RUN yarn install --production
