@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     postgresql-client \
     freetds-dev \
     libproj-dev \
+    shared-mime-info \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g yarn \
