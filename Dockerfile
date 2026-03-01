@@ -20,7 +20,7 @@ WORKDIR /app
 
 # Copy Gemfile and lock
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --without development test --jobs 4 --retry 3
+RUN bundle install --jobs 4 --retry 3
 
 # Copy package files
 COPY package.json yarn.lock ./
