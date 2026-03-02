@@ -31,6 +31,10 @@ RUN yarn install --production
 COPY . .
 
 RUN SECRET_KEY_BASE=placeholder DATABASE_URL=postgresql://localhost/dummy \
+    DATABASE_ADAPTER=postgresql DATABASE_APP_DB=dummy \
+    WAREHOUSE_DATABASE_ADAPTER=postgis WAREHOUSE_DATABASE_DB=dummy \
+    HEALTH_DATABASE_ADAPTER=postgresql HEALTH_DATABASE_DB=dummy \
+    REPORTING_DATABASE_ADAPTER=postgresql REPORTING_DATABASE_DB=dummy \
     REDIS_URL=redis://localhost:6379 CACHE_HOST=localhost CACHE_PORT=6379 CACHE_DB=0 \
     CLIENT=build HOSTNAME=localhost FQDN=localhost TIMEZONE=UTC \
     DEFAULT_FROM=build@localhost SMTP_SERVER=localhost SMTP_DOMAIN=localhost SMTP_PORT=587 \
