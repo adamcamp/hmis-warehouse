@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
     postgresql-client \
     libgeos-c1v5 \
+    libproj25 \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
