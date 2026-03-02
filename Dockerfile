@@ -31,6 +31,7 @@ RUN yarn install --production
 COPY . .
 
 RUN SECRET_KEY_BASE=placeholder DATABASE_URL=postgresql://localhost/dummy \
+    REDIS_URL=redis://localhost:6379 \
     CLIENT=build HOSTNAME=localhost FQDN=localhost TIMEZONE=UTC \
     DEFAULT_FROM=build@localhost SMTP_SERVER=localhost SMTP_DOMAIN=localhost SMTP_PORT=587 \
     RAILS_ENV=production bundle exec rake assets:precompile
