@@ -1,7 +1,8 @@
-<% require File.expand_path('../lib/util/rails_db_uri_extractor', __FILE__) %>
+<% warehouse_url = ENV['WAREHOUSE_DATABASE_HOST'] && "postgresql://#{ENV['WAREHOUSE_DATABASE_USER']}:#{ENV['WAREHOUSE_DATABASE_PASS']}@#{ENV['WAREHOUSE_DATABASE_HOST']}:#{ENV['WAREHOUSE_DATABASE_PORT']}/#{ENV['WAREHOUSE_DATABASE_DB']}" %>
+<% primary_url = ENV['DATABASE_HOST'] && "postgresql://#{ENV['DATABASE_USER']}:#{ENV['DATABASE_PASS']}@#{ENV['DATABASE_HOST']}:#{ENV['DATABASE_PORT']}/#{ENV['DATABASE_APP_DB']}" %>
 databases:
   warehouse:
-    url: <%= RailsDbUriExtractor.extract_uri(env: Rails.env, name: 'warehouse') %>
+    url: <%= warehouse_url %>
 
 # Minimum time for long running queries
 long_running_query_sec: 30
@@ -32,12 +33,7 @@ explain_timeout_sec: 10
 # password: <%= ENV["PGHERO_PASSWORD"] %>
 
 # Stats database URL (defaults to app database)
-stats_database_url: <%= RailsDbUriExtractor.extract_uri(env: Rails.env, name: 'primary') %>
-
-# AWS configuration (defaults to app AWS config)
-# aws_access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
-# aws_secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
-# aws_region: us-east-1
+stats_database_url: <%= primary_url %>
 
 # Filter data from queries (experimental)
 # filter_data: true
