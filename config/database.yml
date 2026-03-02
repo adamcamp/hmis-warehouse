@@ -5,6 +5,7 @@
 # i have to unroll some parts so that it's simple enough for rails to figure out that I want to use multi-db
 
 global_pg_db_config: &global_pg_db_config
+  maintenance_database: <%= ENV.fetch('DATABASE_MAINTENANCE_DB') { 'postgres' } %>
   variables:
     # random_page_cost: Cost of a non-sequentially fetched disk page
     # Set to 1.1 because our databases use SSDs, making random access almost as efficient as sequential.
