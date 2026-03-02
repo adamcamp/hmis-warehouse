@@ -135,7 +135,9 @@ other_db: &other_db
 
 ssl: &ssl
   sslmode: <%= ENV.fetch('DATABASE_SSLMODE') { 'verify-full' } %>
-  sslrootcert: /etc/ssl/certs/us-east-1-bundle.pem
+  <% if (sslrootcert = ENV['DATABASE_SSLROOTCERT']).present? %>
+  sslrootcert: <%= sslrootcert %>
+  <% end %>
 
 development:
   primary:

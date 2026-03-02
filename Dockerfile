@@ -48,6 +48,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     postgresql-client \
     libgeos-c1v5 \
     libproj25 \
+    shared-mime-info \
     curl \
     && rm -rf /var/lib/apt/lists/*
 

@@ -41,6 +41,8 @@ module BostonHmis
           config.secrets
         end
       end
+    elsif ENV['SECRET_KEY_BASE'].present?
+      config.secret_key_base = ENV['SECRET_KEY_BASE']
     end
 
     # Configuration for the application, engines, and railties goes here.
